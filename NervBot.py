@@ -20,32 +20,32 @@ def concat_result(result):
 
 @bot.event
 async def on_ready():
-    '''http://discordpy.readthedocs.io/en/rewrite/api.html#discord.on_ready'''
+	'''http://discordpy.readthedocs.io/en/rewrite/api.html#discord.on_ready'''
 
-    print(f'Logged in as: {bot.user.name} with User ID {bot.user.id}\nVersion: {discord.__version__}\n')
+	print(f'Logged in as: {bot.user.name} with User ID {bot.user.id}\nVersion: {discord.__version__}\n')
 
-    # Changes our bots Playing Status. type=1(streaming) for a standard game you could remove type and url.
-    await bot.change_presence(game=discord.Game(name='FINAL FANTASY XVI', type=1, url='https://twitch.tv/LiquidData'))
+	# Changes our bots Playing Status. type=1(streaming) for a standard game you could remove type and url.
+	await bot.change_presence(game=discord.Game(name='FINAL FANTASY XVI', type=1, url='https://twitch.tv/LiquidData'))
 
-    # Here we load our extensions listed above in [startup_extensions].
-    if __name__ == '__main__':
-        for extension in startup_extensions:
-            try:
-                bot.load_extension(extension)
-            except Exception as e:
-                print(f'Failed to load extension {extension}.', file=sys.stderr)
-                traceback.print_exc()
-    print(f'Successfully logged in and booted...!')
+	# Here we load our extensions listed above in [startup_extensions].
+	if __name__ == '__main__':
+		for extension in startup_extensions:
+			try:
+				bot.load_extension(extension)
+			except Exception as e:
+				print(f'Failed to load extension {extension}.', file=sys.stderr)
+				traceback.print_exc()
+	print(f'Successfully logged in and booted...!')
 
 @bot.command()
 async def load(extension_name : str):
-    '''Loads an extension.'''
-    try:
-        bot.load_extension(extension_name)
-    except (AttributeError, ImportError) as e:
-        await bot.say("```py\n{}: {}\n```".format(type(e).__name__, str(e)))
-        return
-    await bot.say("{} loaded.".format(extension_name))
+	'''Loads an extension.'''
+	try:
+		bot.load_extension(extension_name)
+	except (AttributeError, ImportError) as e:
+		await bot.say("```py\n{}: {}\n```".format(type(e).__name__, str(e)))
+		return
+	await bot.say("{} loaded.".format(extension_name))
 
 @bot.command()
 async def unload(extension_name : str):
@@ -55,9 +55,9 @@ async def unload(extension_name : str):
 	
 @bot.command()
 async def repeat(times : int, content='repeating...'):
-    '''Repeats a message multiple times.'''
-    for i in range(times):
-        await bot.say(content)
+	'''Repeats a message multiple times.'''
+	for i in range(times):
+		await bot.say(content)
 		
 @bot.command()
 async def aimer():

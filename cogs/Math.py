@@ -34,4 +34,4 @@ class Math:
 		await self.bot.say("`Quotients: " + str(left / right) + "`")
 	
 def setup(bot):
-    bot.add_cog(Math(bot))
+	bot.add_cog(Math(bot))
