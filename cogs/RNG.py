@@ -21,8 +21,7 @@ class RNG:
 	@commands.command(name='flip') 
 	async def flip(self):
 		'''Flip a coin.'''
-		flip = random.choice(["Heads","Tails"])
-		await self.bot.say("`" + flip + "`")
+		await self.bot.say('`{}`'.format(random.choice(("Heads", "Tails"))))
 	
 	@commands.command(name='choice', aliases=['choose'])
 	async def choose(self, *choices: str):
