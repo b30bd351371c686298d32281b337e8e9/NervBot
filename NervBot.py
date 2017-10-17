@@ -12,7 +12,7 @@ from discord.ext import commands
 #client = discord.Client()
 
 bot_prefix = "^"
-startup_extensions = ["cogs.Audio", "cogs.RNG", "cogs.Math"]
+startup_extensions = ("cogs.Audio", "cogs.RNG", "cogs.Math")
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(bot_prefix), description="2nd best Discord bot ever.")
 
 def concat_result(result):
