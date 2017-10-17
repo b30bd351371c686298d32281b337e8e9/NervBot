@@ -27,6 +27,7 @@ async def on_ready():
 	# Changes our bots Playing Status. type=1(streaming) for a standard game you could remove type and url.
 	await bot.change_presence(game=discord.Game(name='FINAL FANTASY XVI', type=1, url='https://twitch.tv/LiquidData'))
 
+  tabs-consistency
 	# Here we load our extensions listed above in [startup_extensions].
 	if __name__ == '__main__':
 		for extension in startup_extensions:
@@ -36,6 +37,16 @@ async def on_ready():
 				print(f'Failed to load extension {extension}.', file=sys.stderr)
 				traceback.print_exc()
 	print(f'Successfully logged in and booted...!')
+ 
+    # Here we load our extensions listed above in [startup_extensions].
+    for extension in startup_extensions:
+        try:
+            bot.load_extension(extension)
+        except Exception as e:
+            print(f'Failed to load extension {extension}.', file=sys.stderr)
+            traceback.print_exc()
+    print(f'Successfully logged in and booted...!')
+    master
 
 @bot.command()
 async def load(extension_name : str):
@@ -76,4 +87,5 @@ async def aimer():
 	embed.set_footer(text="Created | " + strftime("%Y-%m-%d %H:%M:%S", gmtime()) + " GMT", icon_url="https://i.imgur.com/P1GyRME.png")
 	await bot.say(embed=embed)
 
-bot.run(Creds.Token, bot=True, reconnect=True)
+if __name__ == '__main__':
+	bot.run(Creds.Token, bot=True, reconnect=True)
