@@ -30,4 +30,4 @@ class RNG:
 		await self.bot.say("`{}`".format(random.choice(choices)))
 
 def setup(bot):
-    bot.add_cog(RNG(bot))
+	bot.add_cog(RNG(bot))
