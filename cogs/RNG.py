@@ -19,12 +19,12 @@ class RNG:
 		self.bot = bot
 
 	@commands.command(name='flip') 
-	async def flip(ctx):
+	async def flip(self, ctx):
 		'''Flip a coin.'''
 		await ctx.send('`{}`'.format(random.choice(("Heads", "Tails"))))
 	
 	@commands.command(name='choice', aliases=['choose'])
-	async def choose(ctx, *choices: str):
+	async def choose(self, ctx, *choices: str):
 		'''Pick from multiple choices'''
 		await ctx.send("`{}`".format(random.choice(choices)))
 
