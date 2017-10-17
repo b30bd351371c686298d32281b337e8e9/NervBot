@@ -27,7 +27,7 @@ class RNG:
 	@commands.command(name='choice', aliases=['choose'])
 	async def choose(self, *choices: str):
 		'''Pick from multiple choices'''
-		await self.bot.say("`" + random.choice(choices) + "`" )
+		await self.bot.say("`{}`".format(random.choice(choices)))
 
 def setup(bot):
     bot.add_cog(RNG(bot))

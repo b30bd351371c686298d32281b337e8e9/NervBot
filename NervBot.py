@@ -16,7 +16,7 @@ startup_extensions = ["cogs.Audio", "cogs.RNG", "cogs.Math"]
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(bot_prefix), description="2nd best Discord bot ever.")
 
 def concat_result(result):
-	return "`" + result + "`"
+	return "`{}`".format(result)
 
 @bot.event
 async def on_ready():
@@ -73,7 +73,7 @@ async def aimer():
 	embed.add_field(name="Wikipedia", value="https://en.wikipedia.org/wiki/Aimer", inline=True)
 	embed.add_field(name="Last.fm", value="https://www.last.fm/music/Aimer", inline=True)
 	embed.add_field(name="Google+", value="https://plus.google.com/+aimer", inline=True)
-	embed.set_footer(text="Created | " + strftime("%Y-%m-%d %H:%M:%S", gmtime()) + " GMT", icon_url="https://i.imgur.com/P1GyRME.png")
+	embed.set_footer(text="Created | {} GMT".format(strftime("%Y-%m-%d %H:%M:%S", gmtime())), icon_url="https://i.imgur.com/P1GyRME.png")
 	await bot.say(embed=embed)
 
 bot.run(Creds.Token, bot=True, reconnect=True)
