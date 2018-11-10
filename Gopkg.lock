@@ -11,6 +11,12 @@
   revision = "ee47d8cbb61ece16125bbdf1a1a463ff2f5fbfea"
 
 [[projects]]
+  name = "github.com/asaskevich/govalidator"
+  packages = ["."]
+  revision = "ccb8e960c48f04d6935e72476ae4a51028f9e22f"
+  version = "v9"
+
+[[projects]]
   name = "github.com/bwmarrin/discordgo"
   packages = ["."]
   revision = "8325a6bf6dd6c91ed4040a1617b07287b8fb0eba"
@@ -42,6 +48,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "5f910e714238e1a488a72d8b855427ca8e2dc7919a429345c453d395467729f0"
+  inputs-digest = "bedce743ca197853b1e302328dafb8c2872fa689919474b4dde1537bbae5c6d3"
   solver-name = "gps-cdcl"
   solver-version = 1
