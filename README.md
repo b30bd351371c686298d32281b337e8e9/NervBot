@@ -1,3 +1,5 @@
+[![Build Status](https://semaphoreci.com/api/v1/swoldemi/nervbot/branches/master/badge.svg)](https://semaphoreci.com/swoldemi/nervbot)
+
 <p align="center">
 <h1> NervBot
 <a href="https://discord.gg/CkwbzSy"><img src="https://discordapp.com/api/guilds/369655902543937536/embed.png?style=banner2" alt="NervBot Discord Server" align="middle"/></a>
