@@ -2,17 +2,23 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"os/signal"
+	"strconv"
 	"syscall"
+	"time"
 
 	"github.com/Necroforger/dgrouter/exrouter"
+	"github.com/asaskevich/govalidator"
 	"github.com/bwmarrin/discordgo"
 	"github.com/joho/godotenv"
 )
 
-var (
+const (
 	botPrefix = "^"
+	otherCat  = "Other/Misc."
+	randomCat = "Random"
 )
 
 func main() {
@@ -28,15 +34,22 @@ func main() {
 
 	router := exrouter.New()
 
-	router.On("ping", func(ctx *exrouter.Context) {
-		ctx.Reply("pong")
-	}).Desc("Responds with pong.")
+	// Other/Misc. command group
+	router.Group(func(r *exrouter.Route) {
+		r.Cat(otherCat)
+
+		router.On("ping", func(ctx *exrouter.Context) {
+			ctx.Reply("pong")
+		}).Desc("Responds with pong.").Cat(otherCat)
+	})
+
 	// RNG command group
 	router.Group(func(r *exrouter.Route) {
 		r.Cat(randomCat)
 
 		r.On("coin", func(ctx *exrouter.Context) {
 			rand.Seed(time.Now().Unix())
+			coin := make([]string, 0)
 			coin = append(coin, "head", "tail")
 			message := fmt.Sprint(coin[rand.Intn(len(coin))])
 			ctx.Reply(message)
@@ -59,13 +72,14 @@ func main() {
 		}).Desc("Generates a random number.").Cat(randomCat)
 	})
 
+	// Help command
 	router.Default = router.On("help", func(ctx *exrouter.Context) {
 		var text = ""
 		for _, v := range router.Routes {
-			text += v.Name + " : \t" + v.Description + "\n"
+			text += v.Name + " : \t" + v.Description + " (" + v.Category + ")\n"
 		}
 		ctx.Reply("```" + text + "```")
-	}).Desc("Prints this help menu.")
+	}).Desc("Prints this help menu.").Cat(otherCat)
 
 	s.AddHandler(func(_ *discordgo.Session, m *discordgo.MessageCreate) {
 		router.FindAndExecute(s, botPrefix, s.State.User.ID, m.Message)
