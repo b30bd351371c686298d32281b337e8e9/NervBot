@@ -1,9 +1,9 @@
-FROM golang:latest
+FROM golang:alpine
 LABEL maintainer="Simon Woldemichael"
-RUN curl -fsSL -o /usr/local/bin/dep https://github.com/golang/dep/releases/download/v0.5.0/dep-linux-amd64 && chmod +x /usr/local/bin/dep
-WORKDIR /go/src/github.com/swoldemi/NervBot
+RUN apk update && apk add git && apk add ca-certificates
+RUN adduser -D -g '' nervbot
+WORKDIR $GOPATH/src/github.com/swoldemi/NervBot
 COPY . .
-RUN dep ensure
-RUN go build -o main . 
-EXPOSE 8080
-CMD ["./main"]
+RUN go get -d -v
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -ldflags='-w -s' -o $GOPATH/bin/NervBot
+CMD ["NervBot"]
