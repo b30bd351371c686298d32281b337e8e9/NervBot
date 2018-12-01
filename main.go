@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"math/rand"
 	"os"
@@ -12,25 +13,29 @@ import (
 	"github.com/Necroforger/dgrouter/exrouter"
 	"github.com/asaskevich/govalidator"
 	"github.com/bwmarrin/discordgo"
-	"github.com/joho/godotenv"
+	"github.com/swoldemi/nervbot/storage/datastore"
 )
 
 const (
 	botPrefix = "^"
 	otherCat  = "Other/Misc."
 	randomCat = "Random"
+	project   = "nervbot-222113"
 )
 
+func check(err error) {
+	if err != nil {
+		panic(err)
+	}
+}
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		panic(err)
-	}
+	storageClient, err := datastore.New(context.Background(), project)
+	check(err)
+	token, err := storageClient.Get("Secret", "token")
+	check(err)
 
-	s, err := discordgo.New("Bot " + os.Getenv("TOKEN"))
-	if err != nil {
-		panic(err)
-	}
+	s, err := discordgo.New("Bot " + token)
+	check(err)
 
 	router := exrouter.New()
 
