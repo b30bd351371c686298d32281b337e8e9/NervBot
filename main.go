@@ -13,7 +13,7 @@ import (
 	"github.com/Necroforger/dgrouter/exrouter"
 	"github.com/asaskevich/govalidator"
 	"github.com/bwmarrin/discordgo"
-	"github.com/swoldemi/nervbot/storage/datastore"
+	"github.com/swoldemi/NervBot/storage/datastore"
 )
 
 const (
